@@ -1,0 +1,77 @@
+/*HEADER*/
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+	  font-size: 3.5rem;
+	}
+}
+#signUp, #signIn, #addProducts{
+	border: 1px solid #3879bb;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
+	border-radius: 5px;
+	background-color: #f2f2f2;
+	padding: 40px;
+	color: #3879bb;
+	margin-bottom: 8%;
+  }
+#navBar {
+	border: 0px solid #3879bb;
+	box-shadow: 0 4px 8px 0 rgb(37, 135, 226);
+}
+
+/*CARDS*/
+
+.card {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+padding: 5px;
+text-align: center;
+}
+.carousel {
+	margin-top: 5%;
+}
+.carousel-caption {
+bottom: 3rem;
+z-index: 10;
+}
+.carousel-item {
+height: 32rem;
+}
+.carousel-item > img {
+position: absolute;
+top: 0;
+left: 0;
+min-width: 100%;
+height: 30rem;
+}
+.jumbotron {
+background-color: white;
+margin-bottom: 0px;
+}
+#marketing p, h3 {
+	color: black;
+	text-align: justify;
+}
+.containerCarousel2{
+	width: 100%;
+	}
+.container {
+	margin-bottom: 5%;
+}
+#tablePro, th, td {
+	border-bottom: 1px solid #ddd;
+	font-size: 12px;
+}
+
+/*footer*/
+footer {
+background-color: #3879bb;
+color: #fff;
+width: 100vw;
+}
