@@ -1,4 +1,4 @@
-/*HEADER*/
+/* HEADER
 .bd-placeholder-img {
 	font-size: 1.125rem;
 	text-anchor: middle;
@@ -11,8 +11,42 @@
 	.bd-placeholder-img-lg {
 	  font-size: 3.5rem;
 	}
+} */
+/*CAROUSEL*/
+.carousel {
+	margin-top: 5%;
+	width: 100%;
 }
-#signUp, #signIn, #addProducts{
+.hr {
+	width: 100%;
+}
+#carousel h1{
+	font-family: 'Cinzel Decorative', cursive;
+}
+#carousel p{
+	font-family: 'Courgette', cursive;
+	font-size: 30px;
+}
+.carousel-caption {
+	bottom: 3rem;
+	z-index: 10;
+}
+.carousel-item {
+	height: 32rem;
+}
+.carousel-item img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	height: 30rem;
+}
+.logo {
+	background: #ffffff;
+    padding:10px;
+    border-radius: 50%;
+}
+#signUp, #signIn, #addProducts, #addCategories{
 	border: 1px solid #3879bb;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 1);
 	border-radius: 5px;
@@ -20,43 +54,67 @@
 	padding: 40px;
 	color: #3879bb;
 	margin-bottom: 8%;
+	width: 50%;
+	}
+  @media screen and (max-width: 700px){
+	#signUp, #signIn, #addProducts, #addCategories{
+		width : 100%
+	}
   }
-#navBar {
-	border: 0px solid #3879bb;
-	box-shadow: 0 4px 8px 0 rgb(37, 135, 226);
+#imageUpperNavBar{
+	position: absolute;
+	height: 400px;
+	width: 100%;
+	z-index: -2;
 }
-
+#NavBarM {
+	padding-left: 0%;
+	padding-right: 0%;
+	background-image: url(../img/upperNavBar.jpg);
+	opacity: 5;
+}
+#lowerNavBar {
+	border: 1px solid #ffffff;
+	box-shadow: 1px 1px 1px 1px rgb(255, 255, 255);
+	border-radius: 5px;
+	margin-top: 1%;
+	font-family: 'Tenali Ramakrishna', sans-serif;
+	font-size: 25px;
+}
 /*CARDS*/
-
-.card {
-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-padding: 5px;
-text-align: center;
-}
-.carousel {
-	margin-top: 5%;
-}
-.carousel-caption {
-bottom: 3rem;
-z-index: 10;
-}
-.carousel-item {
-height: 32rem;
-}
-.carousel-item > img {
-position: absolute;
-top: 0;
-left: 0;
-min-width: 100%;
-height: 30rem;
+.card, .card > img {
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	padding: 5px;
+	text-align: center;
+	border-radius: 15px;
+	font-size: 12px;
 }
 .jumbotron {
-background-color: white;
-margin-bottom: 0px;
+	background-color: white;
+	max-width: 100%;
 }
-#marketing p, h3 {
-	color: black;
-	text-align: justify;
+#marketing1 h3{
+	text-align: center;
+	font-family: 'Philosopher', sans-serif;
+	font-size: 35px;
+}
+#marketing1,#marketing2 p{
+	text-align: center;
+	font-family: 'Ubuntu Condensed', sans-serif;	
+	font-size: 18px;
+}
+#marketing2 h3{
+	text-align: center;
+	text-transform: uppercase;
+	font-family: 'Philosopher', sans-serif;
+}
+#marketing2 img{
+	border-radius: 5%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#marketing1 img{
+	border-radius: 50%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .containerCarousel2{
 	width: 100%;
@@ -68,10 +126,60 @@ margin-bottom: 0px;
 	border-bottom: 1px solid #ddd;
 	font-size: 12px;
 }
-
 /*footer*/
 footer {
-background-color: #3879bb;
-color: #fff;
-width: 100vw;
+	background-color: #3879bb;
+	color: #fff;
+	width: 100%;
+}
+/* Image Gallery */
+.flex-column {
+	max-width: 260px;
+}
+#imageGallery img {
+	margin: 5px;
+}
+.scale {
+	transform: scaleY(1.05);
+	padding-top: 5px; 
+}
+/* Mon Compte */
+#compteUser {
+	background-color: rgb(221, 219, 219);
+}
+.alert {
+	margin-left: 30%;
+	margin-right: 30%;
+}
+#imageGallery {
+	width: 100%;
+}
+#btnGoToTop {
+	display: none; /* Caché par défaut */
+	position: fixed; /* Position fixe / collante */
+	bottom: 20px; /* Placez le bouton en bas de page */
+	right: 30px; /* Placez le bouton à 30 px de la droite */
+	z-index: 99; /* Ne pas se chevaucher */
+	border: none; /* Supprimer les bordures*/
+	outline: none; /* Supprimer le contour*/
+	color: #3879bb;
+	cursor: pointer; /* Ajouter un pointeur de souris au survol */
+	padding: 15px;
+	border-radius: 10px; /* coins arrondis */
+	margin-bottom: 3%;
+	transition:all .3s ease-out;
+}
+#btnGoToTop:hover{
+	transform: rotate(360deg);
+}
+.btn:hover {
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.btn:active {
+	transform: translateY(4px);
+	box-shadow: 0 5px rgb(250, 250, 250);
+}
+#logo {
+	border-radius: 50%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

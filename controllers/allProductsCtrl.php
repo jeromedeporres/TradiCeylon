@@ -3,7 +3,7 @@ $products = new products();
 if (!empty($_GET['id'])){
     $categories = new categories();
     $categories->id = htmlspecialchars($_GET['id']);
-    if($categories->checkCategoriesExist()){
+    if($categories->checkIdCatExist()){
         $products->id_categories = $categories->id;
         $productDetails = $products->getProductsByCategory();
     }else {

@@ -1,28 +1,45 @@
 <?php
+if(isset($_GET['action'])){
+    if($_GET['action'] == 'disconnect'){
+        //Pour deconnecter l'utilisateur on détruit sa session
+        session_destroy();
+        //Et on le redirige vers l'accueil
+        header('location:/');
+        exit();
+    }
+}
 $regexPrice = '^([1-9]|([1-9][0-9]+))\.[0-9]{2}$^';
-$regexName = '^([A-Z]{1}[a-zÀ-ÖØ-öø-ÿ]+)([- ]{1}[A-Z]{1}[a-zÀ-ÖØ-öø-ÿ]+){0,1}$^';
-$regexRef = '^[A-ÿ]{3}[0-9]{4}$^';
+$regexName = '^([A-ÿ0-9\ \%\-\.\/\,\;\:\!\?\(\)\'\"\€\&])+$^';
+$regexRef = '^[[:alnum:]]+^';
 $formErrors = array();
+//instancier notre requete de la class categories
 $categories = new categories();
 $categoryList = $categories->getCategory();
 if (isset($_POST['addProduct'])) {
+//instancier notre requete de la class products
     $product = new products();
+//verification formulaire pour ajouter un product
     if (!empty($_POST['productName'])) {
-        if (preg_match($regexName, $_POST['productName'])) {
+// //si une valeur existe, verifier qu'elle soit en accord avec la regex
+//         if (preg_match($regexName, $_POST['productName'])) {
+//si tout est ok, stocker la valeur dans dans une variable
             $product->productName = htmlspecialchars($_POST['productName']);
-        } else {
-            $formErrors['productName'] = 'Le text est pas valide';
-        }
+//             var_dump($productName);
+// //si une valeur existe mais qu'elle est non conforme a la regex, afficher le message d'erreur suivant : 
+//         } else {
+//             $formErrors['productName'] = 'Le text est pas valide';
+//         }
+//si aucune valeur n'est entrée, afficher le message d'erreur suivant :
     } else {
         $formErrors['productName'] = 'L\'information n\'est pas renseigné';
     }
 
     if (!empty($_POST['description'])) {
-        if (preg_match($regexName, $_POST['description'])) {
-            $product->description = htmlspecialchars($_POST['description']);
-        } else {
-            $formErrors['description'] = 'Le text est pas valide';
-        }
+        // if (preg_match($regexName, $_POST['description'])) {
+            $product->description = $_POST['description'];
+        // } else {
+        //     $formErrors['description'] = 'Le text est pas valide';
+        // }
     } else {
         $formErrors['description'] = 'L\'information n\'est pas renseigné';
     }
@@ -76,7 +93,7 @@ if (isset($_POST['addProduct'])) {
         if(!empty($_POST['id_categories'])){
             $categories->id = htmlspecialchars($_POST['id_categories']);
             if($categories->getCategory()){
-                $categories->id_categories = $categories->id;
+                $product->id_categories = $categories->id;
             }else {
                 $formErrors['id_categories'] = 'Une erreur s\'est produite';
             }
@@ -84,6 +101,7 @@ if (isset($_POST['addProduct'])) {
             $formErrors['id_categories'] = 'Vous n\'avez pas sélectionné le category';
         }
     if (empty($formErrors)) {
+//on appelle la methode de notre model pour creer un nouveau product dans la base de données
         if (!$product->checkProductsExist()){
             if($product->addProduct()){
                $addproductMessage = 'le product a été ajouté.'; 
@@ -92,6 +110,6 @@ if (isset($_POST['addProduct'])) {
             }
         } else {
             $addproductMessage = 'Le product a déjà été ajouté.';
-   }
-}
+        }
+    }
 }

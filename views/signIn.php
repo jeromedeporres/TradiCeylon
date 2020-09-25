@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'].'/config.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/constants.php';
 include_once '../models/users.php';
 include_once '../controllers/signInCtrl.php';
 include '../parts/header.php';

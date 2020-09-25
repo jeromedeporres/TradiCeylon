@@ -1,13 +1,13 @@
 <?php
-include '../parts/headerAdmin.php';
-include_once '../models/products.php';
-include_once '../models/categories.php';
-include '../controllers/addProductsCtrl.php';
-?>
-
+session_start();
+if (isset($_SESSION['account']) && $_SESSION['account']['roles'] == 2) { 
+    include '../parts/headerAdmin.php';
+    include_once '../models/products.php';
+    include_once '../models/categories.php';
+    include '../controllers/addProductsCtrl.php'; ?>
 <div class="container" id="addProducts">
     <h1 class="text-center"> Ajouter un Produit </h1>
-    <form class="offset-1 col-9" action="../views/addProducts.php" method="POST" enctype="multipart/form-data">
+    <form class="col-12 col-sm-12" action="../views/addProducts.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="productName"><strong>Nom de Produit :</strong></label>
             <input id="productName" class="form-control <?= count($formErrors) > 0 ? (isset($formErrors['productName']) ? 'is-invalid' : 'is-valid') : '' ?>" value="<?= isset($_POST['productName']) ? $_POST['productName'] : '' ?>" type="text" name="productName" />
@@ -15,7 +15,7 @@ include '../controllers/addProductsCtrl.php';
             <p class="errorForm"><?= isset($formErrors['productName']) ? $formErrors['productName'] : '' ?></p>
         </div>
         <div class="form-group">
-            <label for="description"><strong>Déscription :</strong></label>
+            <label for="description"><strong>Description :</strong></label>
             <textarea id="description" class="form-control <?= count($formErrors) > 0 ? (isset($formErrors['description']) ? 'is-invalid' : 'is-valid') : '' ?>" value="<?= isset($_POST['description']) ? $_POST['description'] : '' ?>" type="text" name="description"></textarea>
             <!--message d'erreur-->
             <p class="errorForm"><?= isset($formErrors['description']) ? $formErrors['description'] : '' ?></p>
@@ -54,4 +54,14 @@ include '../controllers/addProductsCtrl.php';
         <p class="formOk"><?= isset($addproductMessage) ? $addproductMessage : '' ?></p>
     </form>
 </div>
-<?php include '../parts/footer.php';
+<?php 
+include '../parts/footer.php';
+    }else { 
+        include '../parts/header.php';       
+        ?>
+<div class="jumbotron" style="color: red; text-align:center;">
+  <h1 class="display-4">Accès Restreint</h1>
+    <p class="lead">Accès réservé au personnel autorisé! Veuillez contacter le service technique</p>
+    <hr class="my-4">
+</div>
+<?php } ?>

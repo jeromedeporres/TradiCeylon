@@ -24,13 +24,19 @@ if(isset($_POST['login'])){
        //Si le hash correspond au mot de passe saisi
        if(password_verify($_POST['password'], $hash)){
            //On récupère son profil
-            $userProfil = $user->getUserProfile();
+            $userAccount = $user->getUserAccount();
             //On met en session ses informations
-            $_SESSION['profile']['id'] = $userProfil->id;
-            $_SESSION['profile']['userName'] = $userProfil->userName;
+            $_SESSION['account']['id'] = $userAccount->id;
+            $_SESSION['account']['userName'] = $userAccount->userName;
+            $_SESSION['account']['roles'] = $userAccount->id_roles;
+
+            if($_SESSION['account']['roles'] == 1) {
+                $userAccount->id_roles;
+                header('location:../views/dashboardusers.php');
+            }else {
+            header('location:../views/dashBoard.php');
             //On redirige vers une autre page.
-            header('location:../views/dashboard.php');
-            exit();
+            }exit();
        }else{
            $formErrors['password'] = $formErrors['email'] = 'Veuillez renseigner vos identifiants valide';
        }

@@ -15,7 +15,7 @@ if(isset($_POST['register'])){
             $formErrors['email'] ='Renseigner un adress mail valide';
         }
     }else{
-        $formErrors['email'] = 'Renseigner votre adress mail';
+        $formErrors['email'] = 'Renseigner votre adresse mail';
     }
 
     if(!empty($_POST['userName'])){
@@ -42,7 +42,6 @@ if(isset($_POST['register'])){
             $formErrors['password'] = $formErrors['passwordVerify'] = 'Les mots de passe doivent être identiques';
         }
     }
-
     if(empty($formErrors)){
         $isOk = true;
         //On vérifie si le pseudo est libre
@@ -57,7 +56,11 @@ if(isset($_POST['register'])){
         }
         //Si c'est bon on ajoute l'utilisateur
         if($isOk){
-            $user->addUser();
+            if ($user->addUser()) {
+                $signUpMessageSuccess = ' Vous etre bien crée votre compte';
+            }else {
+                $signUpMessageFail = ' Une erreur est survenu';
+            }
         }
     }
 }
@@ -66,7 +69,7 @@ if(isset($_POST['fieldValue'])){
     //On vérifie que l'on a bien envoyé des données en POST
     if(!empty($_POST['fieldValue']) && !empty($_POST['fieldName'])){
         //On inclut les bons fichiers car dans ce contexte ils ne sont pas connu.
-        include_once '../config.php';
+        include_once '../constants.php';
         include_once '../models/users.php';
         $user = new users();
         $input = htmlspecialchars($_POST['fieldName']);

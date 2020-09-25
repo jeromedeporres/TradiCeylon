@@ -2,7 +2,19 @@
 include '../parts/header.php';
 include_once '../models/users.php';
 include_once '../controllers/signUpCtrl.php';
-?>
+
+if(isset($signUpMessageFail)){ ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <?= $signUpMessageFail ?>
+    </div>
+<?php } 
+if(isset($signUpMessageSuccess)){ ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <?= $signUpMessageSuccess ?>
+    </div>
+<?php } ?>
 <div class="container" id="signUp">
     <form action="#" method="POST">
         <div class="form-group">
@@ -42,7 +54,7 @@ include_once '../controllers/signUpCtrl.php';
                 <small id="passwordVerifyHelp" class="form-text text-muted">Merci de confirmer votre mot de passe</small>
                 <?php } ?>
         </div>
-        <button type="submit" name="register" class="btn btn-primary">Je m'inscris</button>
+        <button type="submit" name="register" class="btn btn-primary">Je m'inscris</button>       
     </form>
 </div>
-<?php include '../parts/footer.php' ?>
+<?php include '../parts/footer.php';

@@ -1,4 +1,6 @@
 <?php
+session_start();
+if (isset($_SESSION['account']) && $_SESSION['account']['roles'] == 2) {
 include '../parts/headerAdmin.php';
 include '../models/products.php';
 require_once '../models/categories.php';
@@ -7,8 +9,8 @@ include '../controllers/listProductsCtrl.php';
  if(isset($_GET['idDelete'])){ ?>
         <div class="alert text-center alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <h1 class="h4">Voulez-vous supprimer ce Category et ses Produits?</h1>
-            <form class="text-center" method="POST" action="<?= $pageLink ?>">
+            <h1 class="h4">Voulez-vous supprimer ce Produit?</h1>
+            <form class="text-center" method="POST" action="../views/listeProducts.php">
                 <input type="hidden" name="idDelete" value="<?= $products->id ?>" />
                 <button type="submit" class="btn btn-primary btn-sm" name="confirmDelete">OUI</button>
                 <button type="button" class="btn btn-danger btn-sm" data-dismiss="alert">Non</button>
@@ -50,16 +52,21 @@ if(isset($resultsNumber) && $resultsNumber == 0){ ?>
                 <td><?= $listproducts->Description ?></td>
                 <td><?= $listproducts->REF ?></td>
                 <td><?= $listproducts->PRIX ?></td>
-                <td><?= $listproducts->Image ?></td>
-                <td><button type="button" class="btn btn-primary btn-sm"><a class="text-white" href="profilProduct.php?&id=<?= $listproducts->IDPRO ?>">Voir le produit</a></button></td>
-                <td><button type="button" class="btn btn-danger btn-sm"><a class="text-white" href="<?= $pageLink ?>&idDelete=<?= $listproducts->IDPRO ?>">Supprimer</a></button></td>
+                <td><img src="<?= $listproducts->Image ?>" height="50" width="50"></img></td>
+                <td><button type="button" class="btn btn-primary btn-sm"><a class="text-white" href="profilPro.php?&id=<?= $listproducts->IDPRO ?>">Voir le produit</a></button></td>
+                <td><button type="button" class="btn btn-danger btn-sm"><a class="text-white" href="listeProducts.php?&idDelete=<?= $listproducts->IDPRO ?>">Supprimer</a></button></td>
             </tr><?php }
     } ?>
         </tbody>
         </table>
     </div>
-    <?php
-    for($i = 0; $i < $pageLimit; $i++){ ?>
-        <a href="<?= $link ?>&page=<?= $i ?>"><?= $i + 1 ?></a><?php
-    }
-include '../parts/footer.php';
+    <?php include '../parts/footer.php';
+}else { 
+        include '../parts/header.php';       
+    ?>
+        <div class="jumbotron" style="color: red; text-align:center;">
+            <h1 class="display-4">Accès Restreint</h1>
+                <p class="lead">Accès réservé au personnel autorisé! Veuillez contacter le service technique</p>
+            <hr class="my-4">
+        </div>
+<?php } ?>
